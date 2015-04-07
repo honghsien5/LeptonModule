@@ -80,17 +80,31 @@ void LeptonThread::run()
 		float diff = maxValue - minValue;
 		float scale = 255/diff;
 		QRgb color;
+        int count [12] = {0,0,0,0,0,0,0,0,0,0,0,0};
+        int x,y;
 		for(int i=0;i<FRAME_SIZE_UINT16;i++) {
 			if(i % PACKET_SIZE_UINT16 < 2) {
 				continue;
 			}
 			value = (frameBuffer[i] - minValue) * scale;
+            if(value >= 150){
+                x=(i-2)%80;
+                y=(i-2)/80;
+                printf("Bright pixel is at %d %d\n",(i-2)%80, (i-2)/80);
+                count[x/20+(y/3*3)]++;
+                
+            }
+            
+            
 			const int *colormap = colormap_grayscale;
 			color = qRgb(colormap[3*value], colormap[3*value+1], colormap[3*value+2]);
 			column = (i % PACKET_SIZE_UINT16 ) - 2;
 			row = i / PACKET_SIZE_UINT16;
 			myImage.setPixel(column, row, color);
 		}
+        for(int i=0);i<12;i++){
+            printf("\nZone %d has %d count\n", count[i]);
+        }
 
 		//lets emit the signal for update
 		emit updateImage(myImage);
