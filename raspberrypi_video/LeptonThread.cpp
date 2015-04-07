@@ -75,8 +75,6 @@ void LeptonThread::run()
 			if(value < minValue) {
 				minValue = value;
 			}
-			column = i % PACKET_SIZE_UINT16 - 2;
-			row = i / PACKET_SIZE_UINT16 ;
 		}
 
 		float diff = maxValue - minValue;
