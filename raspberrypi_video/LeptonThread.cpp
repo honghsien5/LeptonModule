@@ -90,7 +90,7 @@ void LeptonThread::run()
             if(value >= 200){
                 x=(i-2)%80;
                 y=(i-2)/80;
-                printf("Bright pixel is at %f %f\n",(i-2)%80, (i-2)/80);
+                printf("Bright pixel is at %d %d\n",(i-2)%80, (i-2)/80);
                 count[x/20+(y/3*3)]++;
                 
             }
@@ -103,7 +103,7 @@ void LeptonThread::run()
 			myImage.setPixel(column, row, color);
 		}
         for(int i=0;i<12;i++){
-            printf("\nZone %d has %d count\n", count[i]);
+            printf("\nZone %d has %d count\n", i, count[i]);
         }
 
 		//lets emit the signal for update
