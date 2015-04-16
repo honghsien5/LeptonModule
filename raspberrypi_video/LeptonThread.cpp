@@ -92,7 +92,7 @@ void LeptonThread::run()
             if(value >= 200){
                 x=(i-2)%80;
                 y=(i-2)/80;
-                printf("Bright pixel is at %d %d\n",(i-2)%80, (i-2)/80);
+                // printf("Bright pixel is at %d %d\n",(i-2)%80, (i-2)/80);
                 count[x/20+(y/3*3)]++;
                 
             }
@@ -108,10 +108,11 @@ void LeptonThread::run()
 	        for(int i=0;i<12;i++){
 	        	if(count[i]>=10){
 	        		flag=1;
+	        		printf("Heat Source detected\n");
 	        	}
 	        	
 
-	        	printf("\nZone %d has %d count\n", i, count[i]);	
+	        	printf("\nZone %d has %d hot pixels\n", i, count[i]);	
 	        	
 	            
 	        }
