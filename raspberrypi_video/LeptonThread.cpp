@@ -87,7 +87,7 @@ void LeptonThread::run()
 				continue;
 			}
 			value = (frameBuffer[i] - minValue) * scale;
-            if(value >= 150){
+            if(value >= 200){
                 x=(i-2)%80;
                 y=(i-2)/80;
                 printf("Bright pixel is at %d %d\n",(i-2)%80, (i-2)/80);
