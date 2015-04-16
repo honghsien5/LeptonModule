@@ -102,7 +102,7 @@ void LeptonThread::run()
 			row = i / PACKET_SIZE_UINT16;
 			myImage.setPixel(column, row, color);
 		}
-        for(int i=0);i<12;i++){
+        for(int i=0;i<12;i++){
             printf("\nZone %d has %d count\n", count[i]);
         }
 
