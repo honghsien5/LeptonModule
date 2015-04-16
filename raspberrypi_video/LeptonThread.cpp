@@ -16,6 +16,7 @@ LeptonThread::LeptonThread() : QThread()
 
 LeptonThread::~LeptonThread() {
 }
+int flag= 0;
 
 void LeptonThread::run()
 {
@@ -80,6 +81,7 @@ void LeptonThread::run()
 		float diff = maxValue - minValue;
 		float scale = 255/diff;
 		QRgb color;
+
         int count [12] = {0,0,0,0,0,0,0,0,0,0,0,0};
         int x,y;
 		for(int i=0;i<FRAME_SIZE_UINT16;i++) {
@@ -102,9 +104,18 @@ void LeptonThread::run()
 			row = i / PACKET_SIZE_UINT16;
 			myImage.setPixel(column, row, color);
 		}
-        for(int i=0;i<12;i++){
-            printf("\nZone %d has %d count\n", i, count[i]);
-        }
+		if(flag == 0){
+	        for(int i=0;i<12;i++){
+	        	if(count[i]>=10){
+	        		flag=1;
+	        	}
+	        	
+
+	        	printf("\nZone %d has %d count\n", i, count[i]);	
+	        	
+	            
+	        }
+	    }
 
 		//lets emit the signal for update
 		emit updateImage(myImage);
