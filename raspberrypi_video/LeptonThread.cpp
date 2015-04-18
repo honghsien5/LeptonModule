@@ -17,7 +17,7 @@ LeptonThread::LeptonThread() : QThread()
 LeptonThread::~LeptonThread() {
 }
 int flag= 0;
-void LeptonThread::moveThread(int zone){
+void LeptonThread::moveArm(int zone){
     switch(zone){
         case 1:
             printf("Arm movement to zone %d\n",zone);
