@@ -89,19 +89,23 @@ void LeptonThread::run()
 				continue;
 			}
 			value = (frameBuffer[i] - minValue) * scale;
-            if(value >= 200){
-                x=(i-2)%80;
-                y=(i-2)/80;
-                // printf("Bright pixel is at %d %d\n",(i-2)%80, (i-2)/80);
-                count[x/20+(y/3*3)]++;
-                
-            }
-            
+         
+//            if(value >= 200){
+//                x=(i-2)%80;
+//                y=(i-2)/80;
+//                // printf("Bright pixel is at %d %d\n",(i-2)%80, (i-2)/80);
+//                count[x/20+(y/3*3)]++;
+//                
+//            }
             
 			const int *colormap = colormap_grayscale;
 			color = qRgb(colormap[3*value], colormap[3*value+1], colormap[3*value+2]);
 			column = (i % PACKET_SIZE_UINT16 ) - 2;
 			row = i / PACKET_SIZE_UINT16;
+            if(value >= 200){
+                // printf("Bright pixel is at %d %d\n",(i-2)%80, (i-2)/80);
+                count[row/20+(column/3*3)]++;
+            }
 			myImage.setPixel(column, row, color);
 		}
 		if(flag == 0){
