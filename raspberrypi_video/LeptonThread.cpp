@@ -17,7 +17,47 @@ LeptonThread::LeptonThread() : QThread()
 LeptonThread::~LeptonThread() {
 }
 int flag= 0;
-
+void LeptonThread::moveThread(int zone){
+    switch(zone){
+        case 1:
+            printf("Arm movement to zone %d\n",zone);
+            break;
+        case 2:
+            printf("Arm movement to Zone %d\n",zone);
+            break;
+        case 3:
+            printf("Arm movement to Zone %d\n",zone);
+            break;
+        case 4:
+            printf("Arm movement to Zone %d\n",zone);
+            break;
+        case 5:
+            printf("Arm movement to Zone %d\n",zone);
+            break;
+        case 6:
+            printf("Arm movement to Zone %d\n",zone);
+            break;
+        case 7:
+            printf("Arm movement to Zone %d\n",zone);
+            break;
+        case 8:
+            printf("Arm movement to Zone %d\n",zone);
+            break;
+        case 9:
+            printf("Arm movement to Zone %d\n",zone);
+            break;
+        case 10:
+            printf("Arm movement to Zone %d\n",zone);
+            break;
+        case 11:
+            printf("Arm movement to Zone %d\n",zone);
+            break;
+        case 12:
+            printf("Arm movement to Zone %d\n",zone);
+            break;
+            
+    }
+}
 void LeptonThread::run()
 {
 	//create the initial image
@@ -83,7 +123,6 @@ void LeptonThread::run()
 		QRgb color;
 
         int count [12] = {0,0,0,0,0,0,0,0,0,0,0,0};
-        int x,y;
 		for(int i=0;i<FRAME_SIZE_UINT16;i++) {
 			if(i % PACKET_SIZE_UINT16 < 2) {
 				continue;
@@ -112,7 +151,8 @@ void LeptonThread::run()
 	        for(int i=0;i<12;i++){
 	        	if(count[i]>=10){
 	        		flag=1;
-	        		printf("Heat Source detected\n");
+	        		printf("Heat Source detected at Zone %d\n",i);
+                    moveArm(i);
 	        	}
 	        	
 
@@ -130,6 +170,8 @@ void LeptonThread::run()
 	//finally, close SPI port just bcuz
 	SpiClosePort(0);
 }
+
+
 
 void LeptonThread::performFFC() {
 	//perform FFC

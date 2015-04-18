@@ -23,6 +23,7 @@ public:
   ~LeptonThread();
 
   void run();
+  void moveArm(int zone);
 
 public slots:
   void performFFC();
