@@ -143,7 +143,7 @@ void LeptonThread::run()
 			row = i / PACKET_SIZE_UINT16;
             if(value >= 150){
                 // printf("Bright pixel is at %d %d\n",(i-2)%80, (i-2)/80);
-                count[row/20+(column/20*4)]++;
+                count[row/20*4+column/20]++;
             }
 			myImage.setPixel(column, row, color);
 		}
