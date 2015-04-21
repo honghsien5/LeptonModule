@@ -141,7 +141,7 @@ void LeptonThread::run()
 			color = qRgb(colormap[3*value], colormap[3*value+1], colormap[3*value+2]);
 			column = (i % PACKET_SIZE_UINT16 ) - 2;
 			row = i / PACKET_SIZE_UINT16;
-            if(value >= 200){
+            if(value >= 150){
                 // printf("Bright pixel is at %d %d\n",(i-2)%80, (i-2)/80);
                 count[row/20+(column/3*3)]++;
             }
