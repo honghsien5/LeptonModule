@@ -149,7 +149,7 @@ void LeptonThread::run()
 		}
 		if(flag == 0){
 	        for(int i=0;i<12;i++){
-	        	if(count[i]>=10){
+	        	if(count[i]>=5){
 	        		flag=1;
 	        		printf("Heat Source detected at Zone %d\n",i);
                     moveArm(i);
